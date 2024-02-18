@@ -7,6 +7,8 @@ total transfers:     32624
 total supply:        30000000.0 wARRR
 circulating supply:  197973.33200849965
 
+---------------------------------------------------------------
+
 Bridge Round Robin Summary:
 total addresses:     460
 non-zero addresses:  10
@@ -22,6 +24,7 @@ total addresses:     1284
 non-zero addresses:  521
 total wARRR held:    154430.3151914299
 
+---------------------------------------------------------------
 
 Known Addresses:
 Address: 0xaBF1a0039c3e5741D1C816A1685B455A06E0daD4 wARRR primary     Balance: 29802026.6679915 (99.340089%)

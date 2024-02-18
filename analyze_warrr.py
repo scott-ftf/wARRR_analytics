@@ -260,6 +260,8 @@ with open(output_filename, 'w') as file:
     file.write(f"total supply:        {total_supply} wARRR\n")
     file.write(f"circulating supply:  {circulating_supply}\n")
 
+    file.write(f"\n---------------------------------------------------------------\n")
+
     file.write(f"\nBridge Round Robin Summary:\n")
     file.write(f"total addresses:     {len(rr_addresses)}\n")
     file.write(f"non-zero addresses:  {rr_address_count_with_balance}\n")
@@ -275,7 +277,9 @@ with open(output_filename, 'w') as file:
     file.write(f"non-zero addresses:  {non_zero_balance_address_count}\n")
     file.write(f"total wARRR held:    {unknown_addresses_balance_sum}\n")
 
-    file.write("\n\nKnown Addresses:\n")
+    file.write(f"\n---------------------------------------------------------------\n")
+
+    file.write("\nKnown Addresses:\n")
     for addr, details in sorted_known_addresses:
         if details["purpose"] != "Unknown":
             file.write(f"Address: {addr} {details['purpose']}  Balance: {details['balance']} ({details['percentage_of_supply']:.6f}%)\n")
