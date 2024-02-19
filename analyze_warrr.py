@@ -11,18 +11,22 @@ bsc_rpc = 'https://bsc-dataseed.binance.org/'
 bsc_api_endpoint = "https://api.bscscan.com/api"
 bsc_api_key = "API_KEY"
 bsc_api_cps = 4
+chunk_size = 1000000                                # Number of blocks to fetch per request (reduce if hitting records limit)
 output_filename = 'warrr_analysis_report.txt'       # report filename
 transfer_events_filename = 'transfer_events.json'   # filename to save transfer events
 warrrABI = "warrrABI.json"                          # warrr contract abi in json array 
 rr_json = "rr.json"                                 # json array of addresses
 
 known_addresses = [
-    {"address": "0xcdaf240c90f989847c56ac9dee754f76f41c5833", "purpose": "token contract  "},
-    {"address": "0xabf1a0039c3e5741d1c816a1685b455a06e0dad4", "purpose": "wARRR primary   "},
-    {"address": "0x5502920b1c231d3b4d8f124658c447a72b72db4d", "purpose": "staking contract"},
+    {"address": "0xcdaf240c90f989847c56ac9dee754f76f41c5833", "purpose": "wARRR contract  "},
+    {"address": "0xabf1a0039c3e5741d1c816a1685b455a06e0dad4", "purpose": "wARRR main      "},
+    {"address": "0x5502920b1c231d3b4d8f124658c447a72b72db4d", "purpose": "wARRR staking   "},
     {"address": "0xf01575e88e5c9e1fec464128096106155458e2a1", "purpose": "liquidity pool  "},
     {"address": "0x4FF60F02e7b10D1d06fb5930AC010e0e1A99f3f3", "purpose": "bridge primary  "},
-    {"address": "0x820f92c1B3aD8E962E6C6D9d7CaF2a550Aec46fB", "purpose": "tip.cc bot      "}
+    {"address": "0x820f92c1B3aD8E962E6C6D9d7CaF2a550Aec46fB", "purpose": "tip.cc bot      "},
+    {"address": "0xA05f7dB550Bd1C84e6d7D7a480a369E94Fa901B3", "purpose": "fee wallet      "},
+    {"address": "0x472486b3f80f43265c89C0f709D384b677a05771", "purpose": "contract owner  "},
+    {"address": "0xf2e98C90322CBf7cc691BcC2eA0c0B9A39F99d48", "purpose": "deployer        "}
 ]
 
 # Convert known addresses to checksum format and map them by address for easy lookup
@@ -46,7 +50,6 @@ def fetch_transfer_events(contract_address, bsc_api_key):
     startblock = get_start_block(contract_address, bsc_api_key)
     
     # Fetch transfer events in chunks
-    chunk_size = 10000  # Number of blocks to fetch per request
     current_block = get_current_block(bsc_api_key)
     
     total_chunks = (current_block - startblock) // chunk_size
@@ -128,9 +131,8 @@ def load_transfer_events_from_file(filename):
         return json.load(file)
 
 # Update user
-print(f"Connecting to BSC API")
-print(f"Requesting all wARRR transfers")
-print(f"processing 10,000 block chunks...")
+print(f"Connecting to BSCscanAPI")
+print(f"Requesting all wARRR transfers in {chunk_size} block chunks")
 
 # Check if the filename argument is provided
 if len(sys.argv) > 1:
