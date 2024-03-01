@@ -21,7 +21,7 @@ python3 analyze_warrr.py transfer_events.json
 ---
 
 ### Precompiled Reports
-current as of Feb 18th, 2024 
+current as of March 1st, 2024 
 
 * **[warrr_analysis_report.txt](https://raw.githubusercontent.com/scott-ftf/wARRR_analytics/main/warrr_analysis_report.txt)** 
 
