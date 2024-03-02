@@ -9,7 +9,7 @@ from datetime import datetime
 contract_address = "0xcdaf240c90f989847c56ac9dee754f76f41c5833"
 bsc_rpc = 'https://bsc-dataseed.binance.org/'
 bsc_api_endpoint = "https://api.bscscan.com/api"
-bsc_api_key = "DU1WVBWDQHTZHWVNJY9YSMGCUP9S79GNUE"
+bsc_api_key = "YOUR_API_KEY"
 bsc_api_cps = 4
 chunk_size = 1000000                                # Number of blocks to fetch per request (reduce if hitting records limit)
 output_filename = 'warrr_analysis_report.txt'       # report filename
